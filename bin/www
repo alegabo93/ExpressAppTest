@@ -1,9 +1,17 @@
 #!/usr/bin/env node
-var debug = require('debug')('expressApp');
-var app = require('../app');
+const debug = require('debug')('expressApp');
+const app = require('../app');
+const mongoose = require('mongoose');
 
 app.set('port', process.env.PORT || 3000);
 
-var server = app.listen(app.get('port'), function() {
-  debug('Express server listening on port ' + server.address().port);
+// data base connection
+mongoose.connect('mongodb://localhost/shop', err => {
+  if (err) {
+    throw err;
+  }
+
+  const server = app.listen(app.get('port'), () => {
+    debug('Express server listening on port ' + server.address().port);
+  });
 });
