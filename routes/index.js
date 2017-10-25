@@ -1,7 +1,7 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router(); // eslint-disable-line
 
-var users = [
+const users = [
   {
     name: 'Ale',
     age: 24
@@ -17,18 +17,18 @@ var users = [
 ];
 
 /* GET home page. */
-router.get('/', function(req, res) {
+router.get('/', (req, res) => {
   res.render('index', {
     title: 'Express',
-    users: users
+    users
   });
 });
 
-router.post('/addUser', function(req, res) {
+router.post('/addUser', (req, res) => {
   users.push(req.body);
   res.render('index', {
     title: 'Express',
-    users: users
+    users
   });
 });
 
