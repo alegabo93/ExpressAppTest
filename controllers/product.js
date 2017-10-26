@@ -4,7 +4,7 @@ const Product = require('../models/products');
  * GET product by id
  * ================================== */
 
-function getProduct(req, res) {
+const getProduct = (req, res) => {
   const {productId} = req.params;
 
   Product.findById(productId, (err, product) => {
@@ -22,13 +22,13 @@ function getProduct(req, res) {
 
     res.status(200).send({product});
   });
-}
+};
 
 /* ==================================
  * GET products listing.
  * ================================== */
 
-function getProducts(req, res) {
+const getProducts = (req, res) => {
   Product.find({}, (err, products) => {
     if (err) {
       res.status(500).send({
@@ -44,13 +44,13 @@ function getProducts(req, res) {
 
     res.status(200).send({products});
   });
-}
+};
 
 /* ==================================
  * POST product to list
  * ================================== */
 
-function saveProduct(req, res) {
+const saveProduct = (req, res) => {
   const {name, picture, price, category, description} = req.body;
   const product = new Product({
     name,
@@ -69,13 +69,13 @@ function saveProduct(req, res) {
 
     res.status(200).send({product: productStored});
   });
-}
+};
 
 /* ==================================
  * PUT modified product by id
  * ================================== */
 
-function updateProduct(req, res) {
+const updateProduct = (req, res) => {
   const {productId} = req.params;
   const update = req.body;
 
@@ -88,13 +88,13 @@ function updateProduct(req, res) {
 
     res.status(200).send({product: productUpdated});
   });
-}
+};
 
 /* ==================================
  * DELETE product by id
  * ================================== */
 
-function deleteProduct(req, res) {
+const deleteProduct = (req, res) => {
   const {productId} = req.params;
 
   Product.findById(productId, (err, product) => {
@@ -116,7 +116,7 @@ function deleteProduct(req, res) {
       });
     });
   });
-}
+};
 
 module.exports = {
   getProducts,
